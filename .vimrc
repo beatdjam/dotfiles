@@ -34,10 +34,6 @@ set display=lastline
 set list
 " 行末のスペースを可視化
 set listchars=tab:^\ ,trail:~
-" ビジュアルモードで選択した範囲をクリップボードに入れる
-set guioptions+=a
-" ヤンクでクリップボードにコピー
-set clipboard=unnamed,autoselect
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set smartindent
 " タイトルを表示
