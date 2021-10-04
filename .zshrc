@@ -1,3 +1,6 @@
+# node 設定
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 ZSH_THEME="candy"
 
 plugins=(git)
@@ -22,5 +25,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-export PATH="$HOME/.poetry/bin:$PATH"
+export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
+PATH=${JAVA_HOME}/bin:${PATH}
 
+alias repos='ghq list -p | peco'
+alias repo='cd $(repos)'
+alias github='gh-open $(repos)'
