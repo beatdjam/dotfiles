@@ -1,3 +1,9 @@
+# 補完で小文字でも大文字にマッチさせる
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# 補完候補を一覧表示したとき、Tabや矢印で選択できるようにする
+zstyle ':completion:*:default' menu select=1 
+
 # AWS
 export AWS_PROFILE=default
 export AWS_DEFAULT_REGION="ap-northeast-1"
@@ -5,17 +11,6 @@ export AWS_SDK_LOAD_CONFIG=1
 
 # node 設定
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-ZSH_THEME="candy"
-
-plugins=(git)
-plugins=(git zsh-syntax-highlighting)
-plugins=(git zsh-syntax-highlighting zsh-completions)
-
-# zsh-completionsの設定
-autoload -U compinit && compinit -u
-
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 # golang
 export GOENV_ROOT="$HOME/.goenv"
@@ -107,7 +102,8 @@ zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
 zstyle ':chpwd:*' recent-dirs-pushd true
-
+alias la='ls -al'
+alias ll='ls -l'
 alias repos='ghq list -p | peco'
 alias repo='cd $(repos)'
 alias github='gh-open $(repos)'
@@ -124,3 +120,18 @@ autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 # examples here -> https://z.digitalclouds.dev/docs/ecosystem/annexes
 zicompinit # <- https://z.digitalclouds.dev/docs/guides/commands
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+zinit light zsh-users/zsh-syntax-highlighting
+# powerlevel10k
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# コマンド補完
+zinit ice wait'0'; zinit light zsh-users/zsh-completions
+autoload -Uz compinit && compinit
