@@ -10,6 +10,6 @@ $ brew install rcmdnk/file/brew-file
 ```
 4. Init from brew-file
 ```shell
-$ brew file install Brewfile
+$ brew bundle
 ```
 5. Run setup.sh
