@@ -135,3 +135,15 @@ fi
 # コマンド補完
 zinit ice wait'0'; zinit light zsh-users/zsh-completions
 autoload -Uz compinit && compinit
+
+# git
+function g () {
+  if [[ $# > 0 ]]
+  then
+    git $@
+  else
+    git status -s
+  fi
+}
+compdef g=git
+alias gl='g log --graph --decorate --pretty=oneline --abbrev-commit'
